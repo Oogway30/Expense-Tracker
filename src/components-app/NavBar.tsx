@@ -110,18 +110,19 @@ const NavBar = () => {
       >
         <nav className="px-6 py-20">
           <ul className="flex flex-col gap-6">
-            <li className="cursor-pointer hover:text-[#3CB371] transition-colors py-2 text-lg">
+            <NavLink to='/' className={(e)=>{return e.isActive?"text-[#3CB371] ":''}}><li className="cursor-pointer hover:text-[#3CB371] transition-colors py-2 text-lg">
               Dashboard
-            </li>
-            <li className="cursor-pointer hover:text-[#3CB371] transition-colors py-2 text-lg">
+            </li></NavLink>
+            <NavLink to='/transaction'  className={(e)=>{return e.isActive?"text-[#3CB371]":''}}><li className="cursor-pointer hover:text-[#3CB371] transition-colors py-2 text-lg">
               Transactions
-            </li>
+            </li></NavLink>
+            <NavLink to='/budgets'  className={(e)=>{return e.isActive?"text-[#3CB371]":''}}>
             <li className="cursor-pointer hover:text-[#3CB371] transition-colors py-2 text-lg">
               Budgets
-            </li>
-            <li className="cursor-pointer hover:text-[#3CB371] transition-colors py-2 text-lg">
+            </li></NavLink>
+            <NavLink to='/report'  className={(e)=>{return e.isActive?"text-[#3CB371]":''}}><li className="cursor-pointer hover:text-[#3CB371] transition-colors py-2 text-lg">
               Reports
-            </li>
+            </li></NavLink>
             <li className="cursor-pointer hover:text-[#3CB371] transition-colors py-2 text-lg">
               Profile
             </li>
