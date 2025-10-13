@@ -6,7 +6,7 @@ import { ChartBarDefault } from "./components-app/chart-homepage";
 import { PaginationHomepage } from "./components-app/pagination";
 function App() {
   return (
-    <div>
+    <div className="noto-sans-jp">
       <div>
         <NavBar />
       </div>
