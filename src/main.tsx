@@ -9,6 +9,7 @@ import Transaction from './Other Pages/Transaction';
 import Reports from './Other Pages/Reports';
 import Profile from './Other Pages/Profile';
 import ErrorPage from './Error/Error';
+import Budgets from './Other Pages/Budgets';
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
       <RouterProvider
@@ -18,6 +19,7 @@ createRoot(document.getElementById('root')!).render(
         { path: "/transaction", element: <Transaction /> },
         { path: "/profile", element: <Profile /> },
         { path: "/reports", element: <Reports /> },
+        { path: "/budgets", element: <Budgets /> },
       ])}
     />
   </StrictMode>,

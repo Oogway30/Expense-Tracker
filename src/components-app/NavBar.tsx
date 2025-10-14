@@ -14,7 +14,7 @@ const NavBar = () => {
 
         {/* Desktop Navigation */}
         <nav className="hidden xl:block">
-          <ul className="flex gap-20">
+          <ul className="flex gap-20 min-text-lg">
             <NavLink
               to="/"
               className={(e) => {
