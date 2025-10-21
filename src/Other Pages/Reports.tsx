@@ -2,13 +2,7 @@ import NavBar from "../components-app/NavBar";
 import TableReports from "./../components-app/table-reports";
 import { ChartReport } from "../components-app/chart-reports";
 const Reports = () => {
-  const transaction = [
-    { id: 1, date: "2024-07-15", category: "Groceries", description: "Supermarket", amount: -120.5 },
-    { id: 2, date: "2024-07-16", category: "Utilities", description: "Electricity bill", amount: -80.0 },
-    { id: 3, date: "2024-07-17", category: "Income", description: "Salary deposit", amount: 2500.0 },
-    { id: 4, date: "2024-07-18", category: "Dining", description: "Restaurant dinner", amount: -60.0 },
-    { id: 5, date: "2024-07-19", category: "Transportation", description: "Gasoline", amount: -40.0 },
-  ]
+  
   return (
     <div className="flex overflow-x-hidden text-gray-400 flex-col min-h-screen">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -77,7 +71,7 @@ const Reports = () => {
                 </h3>
               </div>
               <div className="overflow-x-auto">
-                <TableReports transaction={transaction} />
+                <TableReports />
               </div>
             </div>
             <ChartReport/>

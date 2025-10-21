@@ -86,7 +86,7 @@ function App() {
         <PaginationHomepage />
       </div>
     </div>
-  );
+  )
 }
 
 export default App;

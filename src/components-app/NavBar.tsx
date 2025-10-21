@@ -95,26 +95,26 @@ const NavBar = () => {
         <nav className="px-6 py-20">
           <ul className="flex flex-col gap-6">
             {/* Made text-lg explicit on mobile items to match desktop sizes */}
-            <li className="cursor-pointer hover:text-[#3CB371] transition-colors py-2 text-sm">
-              <NavLink to="/" onClick={() => setIsMenuOpen(false)} className={({ isActive }) => (isActive ? "text-[#3CB371] text-sm" : "text-sm")}>
+            <li className="cursor-pointer hover:text-[#3CB371] transition-colors py-2 text-lg">
+              <NavLink to="/" onClick={() => setIsMenuOpen(false)} className={({ isActive }) => (isActive ? "text-[#3CB371] text-lg" : "text-lg")}>
                 Dashboard
               </NavLink>
             </li>
 
-            <li className="cursor-pointer hover:text-[#3CB371] transition-colors py-2 text-sm">
+            <li className="cursor-pointer hover:text-[#3CB371] transition-colors py-2 text-lg">
               <NavLink to="/transaction" onClick={() => setIsMenuOpen(false)} className={({ isActive }) => (isActive ? "text-[#3CB371] text-lg" : "text-lg")}>
                 Transactions
               </NavLink>
             </li>
 
-            <li className="cursor-pointer hover:text-[#3CB371] transition-colors py-2 text-sm">
+            <li className="cursor-pointer hover:text-[#3CB371] transition-colors py-2 text-lg">
               <NavLink to="/budgets" onClick={() => setIsMenuOpen(false)} className={({ isActive }) => (isActive ? "text-[#3CB371] text-lg" : "text-lg")}>
                 Budgets
               </NavLink>
             </li>
 
             <li className="cursor-pointer hover:text-[#3CB371] transition-colors py-2 text-lg">
-              <NavLink to="/report" onClick={() => setIsMenuOpen(false)} className={({ isActive }) => (isActive ? "text-[#3CB371] text-lg" : "text-lg")}>
+              <NavLink to="/reports" onClick={() => setIsMenuOpen(false)} className={({ isActive }) => (isActive ? "text-[#3CB371] text-lg" : "text-lg")}>
                 Reports
               </NavLink>
             </li>

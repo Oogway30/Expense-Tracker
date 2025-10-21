@@ -1,6 +1,9 @@
 "use client"
 
 import { Bar, BarChart, CartesianGrid, XAxis } from "recharts"
+import { useSelector, useDispatch } from 'react-redux'
+import { removeTransaction, addTransaction } from '../Redux/Transaction/transactionSlice'
+import type { RootState } from '../Redux/store'
 
 import {
   Card,
@@ -34,6 +37,9 @@ const chartConfig = {
 } satisfies ChartConfig
 
 export function ChartReport() {
+   const transactions = useSelector((state: RootState) => state.transaction.transactions)
+
+
   return (
     <Card className="backdrop-blur-xs bg-white/0.5">
       <CardHeader>

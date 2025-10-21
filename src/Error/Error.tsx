@@ -26,7 +26,7 @@ const ErrorPage = () => {
           <div className="mt-8">
             <a
               className="inline-flex items-center justify-center rounded-lg bg-[#3CB371] px-5 py-3 text-base font-semibold text-background-dark shadow-sm transition-all hover:bg-[#2c8655] focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 dark:focus:ring-offset-background-dark"
-              href="#"
+              href="/dashboard"
             >
               Go Back Home
             </a>

@@ -1,8 +1,10 @@
 import NavBar_Back from "../components-app/NavBar-Back";
 import { useForm, type SubmitHandler } from "react-hook-form";
 import { FaShoppingCart, FaFilm, FaBus } from "react-icons/fa";
+import { addTransaction } from '../Redux/Transaction/transactionSlice'
+import {  useDispatch } from 'react-redux'
 
-const transactions = [
+const demoTransactions = [
   {
     category: "Groceries",
     amount: -45.75,
@@ -26,10 +28,18 @@ type Inputs = {
   description: string;
 };
 const Transaction = () => {
+  const dispatch = useDispatch()
+
   const { register, handleSubmit, watch } = useForm<Inputs>();
   const onSubmit: SubmitHandler<Inputs> = (data) => {
-   
-    console.log(data);
+   dispatch(addTransaction({
+    amount: data.amount,
+    description: data.description,
+    category: data.category_form
+  }
+   ))
+    
+
   };
 
   console.log(watch("amount")); // watch input value by passing the name of it
@@ -55,7 +65,7 @@ const Transaction = () => {
               <h4 className="text-sm font-medium text-background-light/80 mb-5">
                 Recent Transactions
               </h4>
-              {transactions.map((item) => {
+              {demoTransactions.map((item) => {
                 return (
                   <div className="flex justify-between" key={item.category}>
                     <div
@@ -164,12 +174,11 @@ const Transaction = () => {
                   id="category"
                   {...register("category_form", { required: true })}
                 >
-                  <option className="">Groceries</option>
+                  <option>Groceries</option>
                   <option>Utilities</option>
                   <option>Entertainment</option>
                   <option>Transport</option>
-                  <option>Other</option>
-                </select>
+\                </select>
               </div>
               <div>
                 <label
