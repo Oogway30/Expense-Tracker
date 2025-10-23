@@ -1,6 +1,5 @@
-
 type dataItem = {
-  key: number;
+  id: number;
   date: string;
   category: string;
   description: string;
@@ -11,9 +10,6 @@ type TableReportsProps = {
   data: dataItem[];
 };
 const TableHomepage: React.FC<TableReportsProps> = ({ data }) => {
-
-  
-
   return (
     <div className="overflow-hidden w-[90%] mx-auto rounded-xl  border-[1.5px] border-green-800 dark:border-primary/30 bg-background-light dark:bg-background-dark">
       <div className="overflow-x-auto">
@@ -47,33 +43,29 @@ const TableHomepage: React.FC<TableReportsProps> = ({ data }) => {
             </tr>
           </thead>
           <tbody className="divide-y divide-primary/20 dark:divide-primary/30">
-            
-            {data.map((item) => {
-              return (
-                <tr key={item.key}>
-                  <td className="whitespace-nowrap px-25 py-4 text-sm text-[rgb(201,209,212)] dark:text-gray-200">
-                    {item.date}
-                  </td>
-                  <td className="whitespace-nowrap px-25 py-4 text-sm text-gray-400 dark:text-gray-400">
-                    {item.category}
-                  </td>
-                  <td className="whitespace-nowrap px-25 py-4 text-sm text-gray-400 dark:text-gray-400">
-                    {item.description}
-                  </td>
-                 {item.amount>0 ? (
-                   <td className="whitespace-nowrap px-25 py-4 text-right text-sm font-medium  text-green-500">
-                   {item.amount} €
-
-                 </td>
-                 ) : (
-                   <td className="whitespace-nowrap px-25 py-4 text-right text-sm font-medium text-red-500">
-                     {item.amount} €
-                   </td>
-                 )}
-                </tr>
-              );
-            })}
-            
+           {data ? (
+            data.map((item) => (
+              <tr
+                key={item.id}
+                className="border-t  border-[#3CB371] dark:border-primary/30"
+              >
+                <td className="px-6 py-4 font-medium text-gray-400 dark:text-slate-200">
+                  {item.date}
+                </td>
+                <td className="px-6 py-4">{item.category}</td>
+                <td className="px-6 py-4">{item.description}</td>
+                <td className="px-6 py-4 text-right text-red-500">
+                  {item.amount} €
+                </td>
+              </tr>
+            ))
+          ) : (
+            <tr className="h-[15rem]">
+              <td colSpan={4} className="text-center text-2xl w-full">
+                No Data Available!
+              </td>
+            </tr>
+          )}
           </tbody>
         </table>
       </div>

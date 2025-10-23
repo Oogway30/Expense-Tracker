@@ -10,7 +10,7 @@ const NavBar = () => {
 
   return (
     // Added text-base baseline so pages cannot change navbar font-size via inheritance
-    <div className="noto-sans-jp fixed top-0 left-0 w-full z-10 text-base">
+    <div className="noto-sans-jp fixed h-16 top-0 left-0 w-full z-10 text-base">
       <div className="flex items-center justify-between border-b-[1.5px] border-green-800 backdrop-blur-xs bg-white/1 px-6 xl:px-20 text-white">
         <h1 className="text-xl font-bold">Expense Tracker</h1>
 
@@ -49,7 +49,6 @@ const NavBar = () => {
         <div className="hidden xl:flex h-16 items-center justify-center cursor-pointer hover:text-[#3CB371] transition-colors">
           {/* Ensure text size consistent for Profile too */}
           <NavLink to="/profile" className={({ isActive }) => (isActive ? "text-[#3CB371] text-lg" : "text-lg")}>
-            Profile
           </NavLink>
         </div>
 
@@ -119,12 +118,8 @@ const NavBar = () => {
               </NavLink>
             </li>
 
-            <li className="cursor-pointer hover:text-[#3CB371] transition-colors py-2 text-lg">
-              {/* Profile in mobile - close the menu when navigating */}
-              <NavLink to="/profile" onClick={() => setIsMenuOpen(false)} className={({ isActive }) => (isActive ? "text-[#3CB371] text-lg" : "text-lg")}>
-                Profile
-              </NavLink>
-            </li>
+           
+          
           </ul>
         </nav>
       </div>

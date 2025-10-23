@@ -1,8 +1,11 @@
-"use client"
+"use client";
 
-import { TrendingUp } from "lucide-react"
-import { Bar, BarChart, CartesianGrid, XAxis } from "recharts"
-
+import { TrendingUp } from "lucide-react";
+import { Bar, BarChart, CartesianGrid, XAxis } from "recharts";
+import { useSelector } from "react-redux";
+import { getTotalSpentByCategory } from "../Redux/Transaction/transactionSlice";
+import type { RootState } from "../Redux/store";
+import { useState, useEffect } from "react";
 import {
   Card,
   CardContent,
@@ -10,49 +13,48 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "../components/ui/card"
+} from "../components/ui/card";
 import {
   type ChartConfig,
   ChartContainer,
   ChartTooltip,
   ChartTooltipContent,
-} from "../components/ui/chart"
+} from "../components/ui/chart";
 
-export const description = "A bar chart"
-
-const chartData = [
-  { month: "January", desktop: 186 },
-  { month: "February", desktop: 305 },
-  { month: "March", desktop: 237 },
-  { month: "April", desktop: 73 },
-  { month: "May", desktop: 209 },
-  { month: "June", desktop: 214 },
-]
+export const description = "A bar chart";
 
 const chartConfig = {
   desktop: {
     label: "Desktop",
     color: "#3CB371",
   },
-} satisfies ChartConfig
+} satisfies ChartConfig;
 
 export function ChartBarDefault() {
+  const chartData = useSelector(getTotalSpentByCategory);
+  const [TodayDate] = useState(() =>
+  new Date().toLocaleDateString()
+);
+
+
   return (
     <Card className="backdrop-blur-xs bg-white/0.5">
       <CardHeader>
-        <CardTitle>Bar Chart</CardTitle>
-        <CardDescription>January - June 2024</CardDescription>
+        <CardTitle>Expense Chart</CardTitle>
+        <CardDescription>{TodayDate}</CardDescription>
       </CardHeader>
       <CardContent>
         <ChartContainer config={chartConfig}>
           <BarChart accessibilityLayer data={chartData}>
             <CartesianGrid vertical={false} />
             <XAxis
-              dataKey="month"
+              dataKey="category"
               tickLine={false}
               tickMargin={10}
               axisLine={false}
-              tickFormatter={(value) => value.slice(0, 3)}
+              tickFormatter={(value) =>
+                typeof value === "string" ? value.slice(0, 20) : String(value)
+              }
             />
             <ChartTooltip
               cursor={false}
@@ -62,14 +64,6 @@ export function ChartBarDefault() {
           </BarChart>
         </ChartContainer>
       </CardContent>
-      <CardFooter className="flex-col items-start gap-2 text-sm">
-        <div className="flex gap-2 leading-none font-medium">
-          Trending up by 5.2% this month <TrendingUp className="h-4 w-4" />
-        </div>
-        <div className="text-muted-foreground leading-none">
-          Showing total visitors for the last 6 months
-        </div>
-      </CardFooter>
     </Card>
-  )
+  );
 }

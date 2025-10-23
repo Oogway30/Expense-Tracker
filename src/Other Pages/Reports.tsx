@@ -1,13 +1,46 @@
 import NavBar from "../components-app/NavBar";
 import TableReports from "./../components-app/table-reports";
 import { ChartReport } from "../components-app/chart-reports";
+import { useSelector } from "react-redux";
+import type { RootState } from "../Redux/store";
+import { useState } from "react";
+
 const Reports = () => {
-  
+  const allTransactions = useSelector(
+    (state: RootState) => state.transaction.transactions
+  );
+
+  const [selectedCategory, setSelectedCategory] = useState("All Categories");
+  const [selectedDateRange, setSelectedDateRange] = useState("All Time");
+
+  const filteredTransactions = allTransactions.filter((tx) => {
+    const matchCategory =
+      selectedCategory === "All Categories" || tx.category === selectedCategory;
+
+    const matchDate = (() => {
+      const txDate = new Date(tx.date);
+      const now = new Date();
+
+      switch (selectedDateRange) {
+        case "Last 30 Days":
+          return txDate >= new Date(now.setDate(now.getDate() - 30));
+        case "Last 90 Days":
+          return txDate >= new Date(now.setDate(now.getDate() - 90));
+        case "This Year":
+          return txDate.getFullYear() === new Date().getFullYear();
+        default:
+          return true;
+      }
+    })();
+
+    return matchCategory && matchDate;
+  });
+
   return (
     <div className="flex overflow-x-hidden text-gray-400 flex-col min-h-screen">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <NavBar />
-        </div>
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <NavBar />
+      </div>
       <main className="flex-grow container mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="max-w-4xl mx-auto">
           <div className="mb-8 mt-20">
@@ -23,25 +56,8 @@ const Reports = () => {
               <h3 className="text-lg font-bold text-white dark:text-white mb-4">
                 Report Filters
               </h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                  <label
-                    className="block text-sm font-medium text-gray-400 dark:text-slate-300 mb-2"
-                    htmlFor="date-range"
-                  >
-                    Date Range
-                  </label>
-                  <select
-                    className="w-full h-12 px-4 bg-background-light dark:bg-background-dark border border-primary/30 dark:border-primary/40 rounded-lg text-gray-400 dark:text-slate-300 focus:ring-primary focus:border-primary"
-                    id="date-range"
-                    name="date-range"
-                  >
-                    <option>Last 30 Days</option>
-                    <option>Last 90 Days</option>
-                    <option>This Year</option>
-                    <option>All Time</option>
-                  </select>
-                </div>
+              <div className="flex flex-col gap-6">
+                
                 <div>
                   <label
                     className="block text-sm font-medium text-gray-400 dark:text-slate-300 mb-2"
@@ -50,9 +66,24 @@ const Reports = () => {
                     Category
                   </label>
                   <select
-                    className="w-full h-12 px-4 bg-background-light dark:bg-background-dark border border-primary/30 dark:border-primary/40 rounded-lg text-gray-400 dark:text-slate-300 focus:ring-primary focus:border-primary"
+                    id="date-range"
+                    name="date-range"
+                    value={selectedDateRange}
+                    onChange={(e) => setSelectedDateRange(e.target.value)}
+                    className="w-full h-12 px-4 ..."
+                  >
+                    <option>Last 30 Days</option>
+                    <option>Last 90 Days</option>
+                    <option>This Year</option>
+                    <option>All Time</option>
+                  </select>
+
+                  <select
                     id="category"
                     name="category"
+                    value={selectedCategory}
+                    onChange={(e) => setSelectedCategory(e.target.value)}
+                    className="w-full h-12 px-4 ..."
                   >
                     <option>All Categories</option>
                     <option>Groceries</option>
@@ -71,19 +102,15 @@ const Reports = () => {
                 </h3>
               </div>
               <div className="overflow-x-auto">
-                <TableReports />
+                <TableReports transaction={filteredTransactions} />
               </div>
             </div>
-            <ChartReport/>
-             <div className="flex justify-end gap-4">
-              <button
-                className="h-12 px-6 rounded-lg bg-[#359a62] dark:bg-primary/30 text-white font-bold text-sm hover:bg-[#2c8a56] dark:hover:bg-primary/40 transition-colors"
-              >
+            <ChartReport />
+            <div className="flex justify-end gap-4">
+              <button className="h-12 px-6 rounded-lg bg-[#359a62] dark:bg-primary/30 text-white font-bold text-sm hover:bg-[#2c8a56] dark:hover:bg-primary/40 transition-colors">
                 Export PDF
               </button>
-              <button
-                className="h-12 px-6 rounded-lg bg-[#3CB371] text-white font-bold text-sm hover:opacity-90 transition-opacity"
-              >
+              <button className="h-12 px-6 rounded-lg bg-[#3CB371] text-white font-bold text-sm hover:opacity-90 transition-opacity">
                 Export CSV
               </button>
             </div>

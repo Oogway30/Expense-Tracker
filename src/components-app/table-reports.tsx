@@ -1,4 +1,5 @@
 type TransactionItem = {
+  id?: number,
   date?: string;
   category?: string;
   description?: string;
@@ -42,26 +43,29 @@ const TableReports: React.FC<TableReportsProps> = ({ transaction }) => {
           </tr>
         </thead>
         <tbody>
-          {transaction ? transaction.map((item, index) => (
-            <tr
-              key={index}
-              className="border-t  border-[#3CB371] dark:border-primary/30"
-            >
-              <td className="px-6 py-4 font-medium text-gray-400 dark:text-slate-200">
-                {item.date}
-              </td>
-              <td className="px-6 py-4">{item.category}</td>
-              <td className="px-6 py-4">{item.description}</td>
-              <td className="px-6 py-4 text-right text-red-500">
-                {item.amount} €
+          {transaction ? (
+            transaction.map((item) => (
+              <tr
+                key={item.id}
+                className="border-t  border-[#3CB371] dark:border-primary/30"
+              >
+                <td className="px-6 py-4 font-medium text-gray-400 dark:text-slate-200">
+                  {item.date}
+                </td>
+                <td className="px-6 py-4">{item.category}</td>
+                <td className="px-6 py-4">{item.description}</td>
+                <td className="px-6 py-4 text-right text-red-500">
+                  {item.amount} €
+                </td>
+              </tr>
+            ))
+          ) : (
+            <tr className="h-[15rem]">
+              <td colSpan={4} className="text-center text-2xl w-full">
+                No Data Available!
               </td>
             </tr>
-          )) :<tr className="h-[15rem]">
-  <td colSpan={4} className="text-center text-2xl w-full">
-    No Data Available!
-  </td>
-</tr>
-}
+          )}
         </tbody>
       </table>
     </div>

@@ -4,59 +4,13 @@ import "./App.css";
 import TableHomepage from "./components-app/table-homepage";
 import { ChartBarDefault } from "./components-app/chart-homepage";
 import { PaginationHomepage } from "./components-app/pagination";
-import { useState } from "react";
+import { useSelector } from 'react-redux'
+import type { RootState } from "../src/Redux/store"
+
 function App() {
-  let [data] = useState([
-    {
-      key: 1,
-      date: "2024-07-26",
-      category: "Food",
-      description: "Lunch at Cafe",
-      amount: -12.50,
-    },
-    {
-      key: 2,
-      date: "2024-07-26",
-      category: "Transportation",
-      description: "Bus fare",
-      amount: -2.00,
-    },
-    {
-      key: 3,
-      date: "2024-07-26",
-      category: "Entertainment",
-      description: "Movie ticket",
-      amount: -15.00,
-    },
-    {
-      key: 4,
-      date: "2024-07-26",
-      category: "Shopping",
-      description: "Grocery shopping",
-      amount: 50.00,
-    },
-    {
-      key: 5,
-      date: "2024-07-26",
-      category: "Utilities",
-      description: "Electricity bill",
-      amount: 75.00,
-    },
-    {
-      key: 6,
-      date: "2024-07-26",
-      category: "Health",
-      description: "Doctor's appointment",
-      amount: -100.00,
-    },
-    {
-      key: 7,
-      date: "2024-07-26",
-      category: "Miscellaneous",
-      description: "Gift for friend",
-      amount: 30.00,
-    },  
-  ]);
+    const transactions = useSelector((state: RootState) => state.transaction.transactions)
+
+  
   return (
     <div className="noto-sans-jp">
       <div>
@@ -82,8 +36,7 @@ function App() {
         </div>
       </div>
       <div className="px-2.5 gap-10 pb-10 flex flex-col items-center w-full">
-        <TableHomepage data={data}/>
-        <PaginationHomepage />
+        <TableHomepage data={transactions}/>
       </div>
     </div>
   )
