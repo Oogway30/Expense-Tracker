@@ -1,16 +1,13 @@
 "use client";
 
-import { TrendingUp } from "lucide-react";
 import { Bar, BarChart, CartesianGrid, XAxis } from "recharts";
 import { useSelector } from "react-redux";
 import { getTotalSpentByCategory } from "../Redux/Transaction/transactionSlice";
-import type { RootState } from "../Redux/store";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "../components/ui/card";

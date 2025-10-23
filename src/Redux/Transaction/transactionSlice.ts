@@ -1,6 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { createSelector } from "@reduxjs/toolkit";
-import { FaShoppingCart, FaFilm, FaBus } from "react-icons/fa";
 
 export interface TransactionState {
   transactions: Array<{

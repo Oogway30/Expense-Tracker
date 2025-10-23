@@ -3,7 +3,6 @@ import DataShowingHomepage from "./components-app/data-showing-homepage";
 import "./App.css";
 import TableHomepage from "./components-app/table-homepage";
 import { ChartBarDefault } from "./components-app/chart-homepage";
-import { PaginationHomepage } from "./components-app/pagination";
 import { useSelector } from 'react-redux'
 import type { RootState } from "../src/Redux/store"
 
